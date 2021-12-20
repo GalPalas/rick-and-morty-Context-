@@ -4,11 +4,14 @@ import Spinner from "components/spinner/Spinner";
 
 const Characters = () => {
   const { characters, status } = useFetchCharacters();
-  console.log(status);
+
+  if (status === "idle" || status === "loading") {
+    return <Spinner />;
+  }
 
   return (
     <div>
-      {status ? (
+      {status === "success" && characters.length ? (
         <div className="container p-5">
           <div className="row row-cols-lg-5 row-cols-md-3 justify-content-center  gy-3">
             {characters.map((character) => (

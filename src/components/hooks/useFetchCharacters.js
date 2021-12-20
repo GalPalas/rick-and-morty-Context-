@@ -2,14 +2,23 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export const useFetchCharacters = () => {
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState("idle");
   const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
     const fetchCharacters = async () => {
-      const { data } = await axios("https://rickandmortyapi.com/api/character");
-      setCharacters(data.results);
-      setStatus(true);
+      setStatus("loading");
+
+      try {
+        const { data } = await axios(
+          "https://rickandmortyapi.com/api/character"
+        );
+
+        setStatus("success");
+        setCharacters(data.results);
+      } catch (e) {
+        setStatus("error");
+      }
     };
 
     fetchCharacters();
