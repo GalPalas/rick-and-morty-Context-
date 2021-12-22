@@ -9,7 +9,7 @@ const Footer = () => {
           href="/#"
           className="position-absolute bottom-0 end-0 h1 text-info mx-2 p-3"
         >
-          <i class="bi bi-arrow-up-circle-fill"></i>
+          <i className="bi bi-arrow-up-circle-fill"></i>
         </a>
       </div>
     </footer>

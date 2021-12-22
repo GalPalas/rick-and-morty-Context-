@@ -1,11 +1,13 @@
-import { useFetchCharacters } from "components/hooks/useFetchCharacters";
+import { useContext } from "react";
+// import { useFetchCharacters } from "components/hooks/useFetchCharacters";
 import { useFiltersByParams } from "components/hooks/useFiltersByParams";
 import CharacterCard from "components/characterCard/CharacterCard";
 import Spinner from "components/spinner/Spinner";
 import CharactersFiltersQueryParams from "components/charactersFiltersQueryParams/CharactersFiltersQueryParams";
+import CharacterContext from "components/context/charactersContext";
 
 const Characters = () => {
-  const { characters, status } = useFetchCharacters();
+  const { characters, status } = useContext(CharacterContext);
   const { filteredCharacters } = useFiltersByParams(characters);
 
   if (status === "idle" || status === "loading") {
